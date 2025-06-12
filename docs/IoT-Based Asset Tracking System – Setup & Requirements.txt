@@ -1,0 +1,129 @@
+1️⃣ Install Python & Verify Installation
+
+🔹 Step 1: Download & Install Python
+ 1) Go to the official Python website → Download Python
+ 2) Select the latest Windows/macOS/Linux version & install it.
+ 3) During installation, check the box "Add Python to PATH" (important for running Python commands).
+
+🔹 Step 2: Verify Python Installation
+Once installed, open Command Prompt (Windows) or Terminal (macOS/Linux) and type:
+python --version
+
+Expected output:
+Python 3.x.x
+
+To check if pip is installed:
+pip --version
+
+Expected output:
+pip 23.x.x
+
+(If pip is missing, run python -m ensurepip --default-pip)
+
+
+2️⃣ Install Flask & Required Libraries
+🔹 Step 1: Install Flask & Dependencies
+Run the following command to install Flask & required packages:
+pip install flask requests python-telegram-bot folium
+
+🔹 Step 2: Verify Flask Installation
+To ensure Flask is installed correctly, run:
+flask --version
+
+Expected output:
+Flask x.x.x
+
+🔹 Step 3: Check Telegram Bot Library Installation
+Run this test script to verify that the Telegram API is working:
+python -c "import telegram; print('Telegram API working!')"
+
+Expected output:
+Telegram API working!
+
+
+3️⃣ Create & Configure a Telegram Bot
+🔹 Step 1: Register a New Bot on Telegram
+ 1) Open Telegram & search for @BotFather
+ 2) Click "Start" and type:
+/newbot
+
+ 3) Enter a bot name (e.g., "Geofence Tracker Bot").
+ 4) Enter a bot username (e.g., "GeofenceTrackerBot" must end with "Bot").
+ 5) BotFather will generate a Telegram Bot Token → Save this securely!
+
+🔹 Step 2: Get Telegram Chat ID
+ 1) Go to Telegram Web → Telegram Web
+ 2) Start a conversation with your bot.
+ 3) Open the following URL with your bot token:
+https://api.telegram.org/botYOUR_TELEGRAM_BOT_TOKEN/getUpdates
+
+ 4) Look for "chat":{"id": XXXXXXX} → This is your Telegram Chat ID
+
+
+4️⃣ Set Up Firebase Database
+🔹 Step 1: Create a Firebase Project
+ 1) Go to Firebase Console
+ 2) Click "Create a project" & enter a project name.
+ 3) Select "Enable Realtime Database" for IoT data updates.
+
+🔹 Step 2: Get Firebase Database URL
+ 1) Go to Realtime Database in Firebase.
+ 2) Click "Create Database" → Select region & enable public access for testing.
+ 3) Copy the Firebase Database URL (e.g., "https://your-project.firebaseio.com/").
+
+🔹 Step 3: Format Firebase Data Structure
+Your Firebase database should store geofencing data in this format:
+{
+  "asset1": {
+    "latitude": 12.9746,
+    "longitude": 77.5988,
+    "timestamp": "2025-06-11 23:04:00",
+    "status": "INSIDE Geofence",
+    "distance": 30
+  }
+}
+
+
+
+5️⃣ Deploy the Flask Geofencing Tracker
+🔹 Step 1: Start Your Flask Server
+Navigate to your project folder:
+cd C:\Users\NANDAN\Desktop\GeofenceTracker
+
+Run the Flask server:
+python geofence_tracker.py
+
+Expected output:
+Running on http://127.0.0.1:5000/
+
+
+🔹 Step 2: Open the Live Tracking Dashboard
+Go to your browser & enter:
+👉 http://localhost:5000
+
+
+
+6️⃣ Testing Geofencing Logic & Alerts
+🔹 Verify Geofence Thresholds
+
+✅ Inside the Geofence (≤ 50m)
+Latitude: 12.9746 | Longitude: 77.5986 | Distance: ~30m (Inside)
+Latitude: 12.9747 | Longitude: 77.5989 | Distance: ~12m (Inside)
+
+
+⚠️ Outside the Geofence (> 50m)
+Latitude: 12.9755 | Longitude: 77.5995 | Distance: ~65m (Outside)
+Latitude: 12.9762 | Longitude: 77.6001 | Distance: ~85m (Outside)
+
+
+🚀 Final Steps
+✅ Ensure your Firebase URL & Telegram Bot Token are correctly configured.
+✅ Test the live tracking dashboard (http://localhost:5000).
+
+
+
+
+
+
+
+
